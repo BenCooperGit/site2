@@ -1,0 +1,81 @@
+{% extends "main.html" %}
+
+
+
+
+{% block content %}
+
+
+<style>
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: rgba($black, .55);
+}
+
+.row {
+	background-color: white;
+	border-radius: 30px;
+	box-shadow: 12px 12px 22px grey;
+}
+
+img {
+	border-top-left-radius: 30px;
+	border-bottom-left-radius: 30px;
+}
+
+.button {
+	border: none;
+	outline: none;
+	height: 50px;
+	width: 100%;
+	background-color: black;
+	color: white;
+	border-radius: 4px;
+	font-weight: bold;
+}
+.button:hover {
+	background: white;
+	border: 1px solid;
+	color: black;
+}
+
+</style>
+
+
+
+<body>
+	<section class="Form my-4 mx-5">
+		<div class="container">
+			<div class="row no-gutters">
+				<div class="col-lg-5">
+					{% load static %}
+					<img src="{% static '/images/poker-portrait.jpg' %}" class="img-fluid" alt="poker-portrait">
+				</div>
+				<div class="col-lg-7 px-5 pt-5">	
+			    	<h1 class="py-3">OUTSIDE EDGE</h1>
+			    	<h4>Sign into your account</h4>
+					<form method="POST">
+				        {% csrf_token %}
+				        {% load crispy_forms_tags %}
+				        {{form|crispy}}
+				        <input class="button mt-3 mb-5" type="submit" value="Login">
+				    </form>
+				    <a href="/fg">Forgot password?</a>
+			    	<p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
+
+
+{% endblock content %}
+
+
+

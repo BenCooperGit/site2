@@ -1,0 +1,219 @@
+<style>
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background: rgb(219, 226, 226);
+}
+
+.row {
+	background: white;
+	border-radius: 30px;
+}
+
+</style>
+
+
+
+
+<body>
+	<section class="Form my-4 mx-5">
+		<div class="container">
+			<div class="row no-gutters">
+
+				<div class="col-lg-5">
+					{% load static %}
+					<img src="{% static '/images/im4.jpg' %}" class="img-fluid" alt="" width="20">
+				</div>
+
+				<div class="col-lg-7">
+			    	<h1>Login</h1>
+					<form method="POST">
+				        {% csrf_token %}
+				        {{form.as_p}}
+				        <input class="button" type="submit" value="Login">
+				    </form>
+				    <a href="/fg">Forgot password?</a>
+			    	<p>Don't have an account? <a href="/regis">Register</a></p>
+				</div>
+			</div>
+
+		</div>
+	</section>
+</body>
+
+
+
+
+
+{% extends "main.html" %}
+
+{% block content %}
+
+
+<div class="container pt-5 mt-5">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Time</th>
+        <th scope="col">Odds</th>
+        <th scope="col">Sport</th>
+        <th scope="col">Event</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td scope="row">{{object.tip.time}}</td>
+        <td>{{object.tip.odds}}</td>
+        <td>{{object.tip.sport}}</td>
+        <td>{{object.tip.event}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
+
+<body style="background: rgb(219, 226, 226)">
+
+	<div class="container" style="background: white; margin: auto; max-width: 550px;">
+		
+		<div class="col-lg-5">
+			{% load static %}
+			<img src="{% static '/images/im4.jpg' %}" class="img-fluid" alt="" width="20">
+		</div>
+
+		<div class="col-lg-7">
+			a,sfajsf;
+		</div>
+
+	</div> 
+
+
+
+
+
+</body>
+
+
+
+
+
+
+<div class="container" style="background: white; max-width: 550px;">
+	<div class="row">
+		<div class="col-lg-5" style="background: black;">
+			Ben
+		</div>
+		<div class="col-lg-7" style="background: rgb(219, 0, 0);">
+			Cooper
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<style>
+
+body {
+  background: rgba($black, .55);
+}
+
+.card {
+  background-color: white;
+  border-radius: 20px;
+  box-shadow: 12px 12px 22px grey;
+}
+
+.header-bar {
+  border-radius: 20px 20px 0 0;
+  background: linear-gradient(90deg, #EEA390 0%, #EB796F 43%, #EB796F 100%);
+}
+
+.header-bar a {
+    color: rgb(247, 247, 247);
+    text-decoration: none;
+}
+
+</style>
+
+
+
+<body>
+    <div class="container card my-5">
+
+      <div class="header-bar">
+        <a href="{% url 'user-dashboard' %}">&#8592; Back</a>
+      </div>
+
+      <div class="container p-5">
+
+        <div class="row">
+          {{object.tip.time}}
+        </div>
+        <div class="row">
+          {{object.tip.odds}}
+        </div>
+        <div class="row">
+          {{object.tip.sport}}
+        </div>
+        <div class="row">
+          {{object.tip.event}}
+        </div>
+
+        <form method="POST">
+          {% csrf_token %}
+          {{form.as_p}}
+          <input class="button mt-3 mb-5" type="submit" value="Submit">
+        </form>
+      </div>
+
+    </div>
+</body>
+
+
+
+
+
+
+
+
+
+<div class="container py-5 my-5">
+  <table class="table table-hover">
+    <caption>List of users</caption>
+    <thead>
+      <tr>
+        <th scope="col">Time</th>
+        <th scope="col">Odds</th>
+        <th scope="col">Sport</th>
+        <th scope="col">Event</th>
+        <th scope="col">Edit</th>
+      </tr>
+    </thead>
+    <tbody>
+    	{% for tip in user_tips %}
+      <tr>
+        <td scope="row">{{tip.time}}</td>
+        <td>{{tip.odds}}</td>
+        <td>{{tip.sport}}</td>
+        <td>{{tip.event}}</td>
+        <td><a href="{% url 'user-dashboard-input' tip.id %}">link</a></td>
+      </tr>
+    </tbody>
+    {% endfor %}
+  </table>
+</div>

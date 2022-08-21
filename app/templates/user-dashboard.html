@@ -1,0 +1,235 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+{% include "navbar.html" %}
+
+<body style="background-color: grey;">
+
+  <div class="row my-2 py-2" style="background-color: grey;"></div>
+
+  <div class="container justify-content-center py-2 my-5" id="accordionExample" style="background-color: white; box-shadow: 12px 12px 22px grey; border-radius: 5px;">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button btn btn btn-warning text-left" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="width: 100%">
+
+            TO DO
+            &#8681;
+
+        </button>
+        
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+           <!-- Large screens and bigger -->
+           <div class="container mb-5 d-none d-lg-block">
+            <table class="table table-hover">
+              <caption>List of unsubmitted bets</caption>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Minutes Played</th>
+                  <th scope="col">Sport</th>
+                  <th scope="col">League</th>
+                  <th scope="col">Home Team</th>
+                  <th scope="col">Away Team</th>
+                  <th scope="col">Market</th>
+                  <th scope="col">Selection</th>
+                  <th scope="col">Odds</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for tip in user_tips_unsubmitted %}
+                <tr class="clickable" onclick="{% url 'user-dashboard-input' tip.id %}">
+                  <td scope="row">{{tip.pk}}</td>
+                  <td scope="row">{{tip.time}}</td>
+                  <td scope="row">{{tip.match_clock}}</td>
+                  <td scope="row">{{tip.tip_source.sport.name}}</td>
+                  <td scope="row">{{tip.league}}</td>
+                  <td scope="row">{{tip.playera}}</td>
+                  <td scope="row">{{tip.playerb}}</td>
+                  <td scope="row">{{tip.market}}</td>
+                  <td scope="row">{{tip.selection}}</td>
+                  <td scope="row">{{tip.odds}}</td>
+                  <td><a class="text-success" href="{% url 'user-dashboard-input' tip.id %}">&#8674;</a></td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+           <!-- Medium screens only -->
+           <div class="container mb-5 d-none d-md-block d-lg-none">
+            <table class="table table-hover">
+              <caption>List of unsubmitted bets</caption>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Home Team</th>
+                  <th scope="col">Away Team</th>
+                  <th scope="col">Market</th>
+                  <th scope="col">Selection</th>
+                  <th scope="col">Odds</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for tip in user_tips_unsubmitted %}
+                <tr>
+                  <td scope="row">{{tip.pk}}</td>
+                  <td scope="row">{{tip.match_clock}}</td>
+                  <td scope="row">{{tip.playera}}</td>
+                  <td scope="row">{{tip.playerb}}</td>
+                  <td scope="row">{{tip.market}}</td>
+                  <td scope="row">{{tip.selection}}</td>
+                  <td scope="row">{{tip.odds}}</td>
+                  <td><a class="text-success" href="{% url 'user-dashboard-input' tip.id %}">&#8674;</a></td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+          <!-- Small screens and smaller -->
+           <div class="container d-md-none">
+            <table class="table table-hover">
+              <caption>List of unsubmitted bets</caption>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Home Team</th>
+                  <th scope="col">Away Team</th>
+                  <th scope="col">Market</th>
+                  <th scope="col">Odds</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for tip in user_tips_unsubmitted %}
+                <tr>
+                  <td scope="row">{{tip.pk}}</td>
+                  <td scope="row">{{tip.playera}}</td>
+                  <td scope="row">{{tip.playerb}}</td>
+                  <td scope="row">{{tip.market}}</td>
+                  <td scope="row">{{tip.odds}}</td>
+                  <td><a class="text-success" href="{% url 'user-dashboard-input' tip.id %}">&#8674;</a></td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingTwo">
+        <button class="accordion-button btn btn-success text-left" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" style="width: 100%">
+
+          COMPLETE
+          &#8681;
+
+        </button>
+      </h2>
+      <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+        <div class="accordion-body">
+           <!-- Large screens and bigger -->
+           <div class="container mb-5 d-none d-lg-block">
+            <table class="table table-hover">
+              <caption>List of completed bets</caption>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Minutes Played</th>
+                  <th scope="col">Sport</th>
+                  <th scope="col">League</th>
+                  <th scope="col">Home Team</th>
+                  <th scope="col">Away Team</th>
+                  <th scope="col">Market</th>
+                  <th scope="col">Selection</th>
+                  <th scope="col">Odds</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for tip in user_tips_submitted %}
+                <tr>
+                  <td scope="row">{{tip.pk}}</td>
+                  <td scope="row">{{tip.time}}</td>
+                  <td scope="row">{{tip.match_clock}}</td>
+                  <td scope="row">{{tip.tip_source.sport.name}}</td>
+                  <td scope="row">{{tip.league}}</td>
+                  <td scope="row">{{tip.playera}}</td>
+                  <td scope="row">{{tip.playerb}}</td>
+                  <td scope="row">{{tip.market}}</td>
+                  <td scope="row">{{tip.selection}}</td>
+                  <td scope="row">{{tip.odds}}</td>
+                  <td><a class="text-success" href="{% url 'user-dashboard-input' tip.id %}">&#8674;</a></td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+           <!-- Medium screens only -->
+           <div class="container mb-5 d-none d-md-block d-lg-none">
+            <table class="table table-hover">
+              <caption>List of completed bets</caption>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Time</th>
+                  <th scope="col">Home Team</th>
+                  <th scope="col">Away Team</th>
+                  <th scope="col">Market</th>
+                  <th scope="col">Selection</th>
+                  <th scope="col">Odds</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for tip in user_tips_submitted %}
+                <tr>
+                  <td scope="row">{{tip.pk}}</td>
+                  <td scope="row">{{tip.match_clock}}</td>
+                  <td scope="row">{{tip.playera}}</td>
+                  <td scope="row">{{tip.playerb}}</td>
+                  <td scope="row">{{tip.market}}</td>
+                  <td scope="row">{{tip.selection}}</td>
+                  <td scope="row">{{tip.odds}}</td>
+                  <td><a class="text-success" href="{% url 'user-dashboard-input' tip.id %}">&#8674;</a></td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+          <!-- Small screens and smaller -->
+           <div class="container d-md-none">
+            <table class="table table-hover">
+              <caption>List of completed bets</caption>
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Home Team</th>
+                  <th scope="col">Away Team</th>
+                  <th scope="col">Market</th>
+                  <th scope="col">Odds</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for tip in user_tips_submitted %}
+                <tr>
+                  <td scope="row">{{tip.pk}}</td>
+                  <td scope="row">{{tip.playera}}</td>
+                  <td scope="row">{{tip.playerb}}</td>
+                  <td scope="row">{{tip.market}}</td>
+                  <td scope="row">{{tip.odds}}</td>
+                  <td><a class="text-success" href="{% url 'user-dashboard-input' tip.id %}">&#8674;</a></td>
+                </tr>
+              </tbody>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+{% endblock %}

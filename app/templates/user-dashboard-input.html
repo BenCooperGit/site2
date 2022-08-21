@@ -1,0 +1,44 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<style>
+</style>
+
+<body style="background-color: grey;">
+  <div class="card my-5 rounded" style="width: 28rem; margin: auto; box-shadow: 12px 12px 22px grey;">
+    <div class="card-header">
+      <a href="{% url 'user-dashboard' %}">&#8592; Back</a>  </div>
+    <div class="card-body">
+      <h5 class="card-title">Bet ID: {{object.tip.pk}}</h5>
+      <p class="card-text">Please enter the odds and stake that you bet at. If didn't bet do this. etc.</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item"><b>Sport:</b> {{object.tip.tip_source.sport.name}}</li>
+      <li class="list-group-item"><b>Time:</b> {{object.tip.time}}</li>
+      <li class="list-group-item"><b>Minutes Played:</b> {{object.tip.match_clock}}</li>
+      <li class="list-group-item"><b>League:</b> {{object.tip.league}}</li>
+      <li class="list-group-item"><b>Home Team:</b> {{object.tip.playera}}</li>
+      <li class="list-group-item"><b>Away Team:</b> {{object.tip.playerb}}</li>
+      <li class="list-group-item"><b>Market:</b> {{object.tip.market}}</li>
+      <li class="list-group-item"><b>Selection:</b> {{object.tip.selection}}</li>
+      <li class="list-group-item"><b>Odds:</b> {{object.tip.odds}}</li>
+      <li class="list-group-item"><b>Stake:</b> £{{object.stake_suggested}}</li>
+    </ul>
+    <div class="card-body">
+      <form method="POST">
+        {% csrf_token %}
+        {% load crispy_forms_tags %}
+        {{form|crispy}}
+        <input class="btn btn-dark mt-2" type="submit" value="Submit" style="width: 100%;">
+      </form>
+    </div>
+    <div class="card-footer text-muted">
+      {{object.tip.time}}
+    </div>
+  </div>
+</body>
+  
+{% endblock content %}
+
+

@@ -1,0 +1,77 @@
+{% extends "main.html" %}
+
+
+{% block content %}
+
+{% include "navbar.html" %}
+
+
+
+<style>
+.carousel-caption {
+	top: 50%;
+	transform: translateY(-50%);
+	bottom: initial;
+	font-size: 2em;
+}
+</style>
+
+
+<!-- SECTION 1: Picture and text -->
+
+{% load static %}
+<div class="carousel-inner">
+  <div class="carousel-item active">
+    <img src="{% static '/images/im2.jpg' %}" class="d-block w-100" alt="...">
+    <div class="carousel-caption">
+      <p>Mathematically proven profitable betting.</p>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- SECTION 2: Title -->
+
+<div class="container-fluid pt-5 pb-5 mb-5">
+	<h1 class="text-center">What we do</h1>
+</div>
+
+
+
+<!-- SECTION 2: Cards -->
+
+<div class="row row-cols-1 row-cols-md-3 g-4 px-md-5 mx-md-5 mx-2 pb-5 mb-5">
+  <div class="col-md-4 pb-5 px-2">
+    <div class="card h-100 m-2">
+      <img src="{% static '/images/maths-square.jpg' %}" class="card-img-top" alt="maths">
+      <div class="card-body">
+        <h5 class="card-title">Mathematics</h5>
+        <p class="card-text">Taking inspiration from academic literature, our talented team of academics formalise and test betting hypothesis with to outperform the market.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 pb-5 px-2">
+    <div class="card h-100 m-2">
+      <img src="{% static '/images/money-square.jpg' %}" class="card-img-top" alt="money">
+      <div class="card-body">
+        <h5 class="card-title">Proprietary Trading</h5>
+        <p class="card-text">We trade our own capital, putting our money where our mouth is. We display unwavering confidence in our process and selections to continue to produce positive value.</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4 pb-5 px-2">
+    <div class="card h-100 m-2">
+      <img src="{% static '/images/horse-square.jpg' %}" class="card-img-top" alt="horse">
+      <div class="card-body">
+        <h5 class="card-title">Betting</h5>
+        <p class="card-text">We exploit price inefficiencies in global betting markets to achieve positive year on year returns.</p>
+      </div>
+    </div>
+   </div>
+</div>
+
+
+
+{% include "footer.html" %}
+{% endblock content %}
