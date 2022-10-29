@@ -6,11 +6,10 @@ from django.db.models import Q
 
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.contrib.auth.forms import UserChangeForm  #
 from django.contrib.auth import login
 
 from .models import Tip, User, UserTipped, JoinUs
-from .forms import DashboardEditForm, RegistrationForm, JoinUsApplicationForm
+from .forms import DashboardEditForm, RegistrationForm, JoinUsApplicationForm, EditProfileForm
 
 
 # Create your views here.
@@ -51,7 +50,7 @@ class RegisterPage(generic.FormView):
 
 class UserEditView(LoginRequiredMixin, generic.UpdateView):
 	model = User
-	form_class = UserChangeForm
+	form_class = EditProfileForm
 	template_name = "edit-profile.html"
 	success_url = reverse_lazy("user-dashboard")
 

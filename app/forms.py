@@ -2,6 +2,7 @@ from django import forms
 from .models import UserTipped, User, JoinUs, BettingAccount
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.forms import UserChangeForm
 
 
 class DashboardEditForm(forms.ModelForm):
@@ -23,6 +24,12 @@ class RegistrationForm(UserCreationForm):
 		model = User
 		fields = ("email", "username", "password1", "password2")
 
+class EditProfileForm(UserChangeForm):
+	email = forms.EmailField(widget=forms.EmailInput(), max_length=60)
+	username = forms.CharField(max_length=60)
+	class Meta:
+		model = User
+		fields = ("email", "username", "first_name", "last_name")
 
 class CustomMMCF(forms.ModelMultipleChoiceField):
     def label_from_instance(self, betting_account):
